@@ -18,6 +18,14 @@ module.exports = async function run({
   inputs,
   dependabotMetadata,
 }) {
+  console.log('BEFORE getInputs()')
+  if (typeof inputs['skip-commit-verification'] === 'boolean') {
+    console.log('skip-commit-verification is a BOOLEAN!')
+  } else if (typeof inputs['skip-commit-verification'] === 'string') {
+    console.log('skip-commit-verification is a STRING!')
+  } else {
+    console.log('skip-commit-verification is SOMETHING ELSE!')
+  }
   const { updateType } = dependabotMetadata
   const dependencyNames = parseCommaOrSemicolonSeparatedValue(
     dependabotMetadata.dependencyNames
@@ -33,6 +41,15 @@ module.exports = async function run({
     PR_NUMBER,
     SKIP_COMMIT_VERIFICATION,
   } = getInputs(inputs)
+
+  console.log('AFTER getInputs()')
+  if (typeof SKIP_COMMIT_VERIFICATION === 'boolean') {
+    console.log('skip-commit-verification is a BOOLEAN!')
+  } else if (typeof SKIP_COMMIT_VERIFICATION === 'string') {
+    console.log('skip-commit-verification is a STRING!')
+  } else {
+    console.log('skip-commit-verification is SOMETHING ELSE!')
+  }
 
   try {
     toolkit.logActionRefWarning()
