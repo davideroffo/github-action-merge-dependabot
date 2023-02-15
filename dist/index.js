@@ -2827,7 +2827,7 @@ module.exports = async function run({
     }
 
     if (!SKIP_COMMIT_VERIFICATION) {
-      console.log('it is skipping commit verification ...')
+      console.log('it is NOT skipping commit verification ...')
       try {
         await verifyCommits(commits)
       } catch {
@@ -2835,6 +2835,8 @@ module.exports = async function run({
           'PR contains invalid dependabot commit signatures, skipping.'
         )
       }
+    } else {
+      console.log('it is skipping commit verification ...')
     }
 
     if (
